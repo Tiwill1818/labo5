@@ -1,0 +1,102 @@
+<!-- views/pages/index.ejs -->
+
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <%- include('./partials/head') %>
+</head>
+
+<body class="container">
+
+  <header>
+    <%- include('./partials/header') %>
+  </header>
+
+  <main>
+    <h1>This is great</h1>
+    <p>Welcome to templating using EJS</p>
+    <div class="jumbotron">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Date de création</th>
+            <th>Nom</th>
+            <th>Prix</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% itemList.tab.forEach(function(item) { %>
+            <tr>
+              <td>
+                <%= item.id %>
+              </td>
+              <td>
+                <%= item.dateCreation %>
+              </td>
+              <td>
+                <%= item.nom %>
+              </td>
+              <td>
+                <%= item.prix %>
+              </td>
+            </tr>
+            <% }); %>
+        </tbody>
+
+      </table>
+
+    </div><br>
+    <div class="jumbotron">
+      <form onsubmit="return false;" id="suppId">
+        <h3>Supprimer un élément par ID :</h3>
+        <div class="form-group row row-no-gutters">
+          <div class="col-sm-3 col-xs-3">
+            <input type="text" class="form-control input-sm" id="id" placeholder="ID">
+          </div>
+          <div class="col-sm-1 col-xs-1">
+            <button type="submit" class="btn btn-default btn-sm btn-block"
+              style="width: fit-content;">Supprimer</button>
+          </div>
+        </div>
+      </form>
+      <br>
+      <form onsubmit="return false;" id="suppNom">
+        <h3>Supprimer un élément par nom :</h3>
+        <div class="form-group row row-no-gutters">
+          <div class="col-sm-3 col-xs-3">
+            <input type="text" class="form-control input-sm" id="nom" placeholder="Nom">
+          </div>
+          <div class="col-sm-1 col-xs-1">
+            <button type="submit" class="btn btn-default btn-sm btn-block"
+              style="width: fit-content;">Supprimer</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="jumbotron">
+      <form onsubmit="return false;" id="ajouter">
+        <h3>Ajouter un élément :</h3>
+        <div class="form-group row row-no-gutters">
+          <div class="col-sm-3 col-xs-3">
+            <input type="text" class="form-control input-sm" id="nom" placeholder="Nom">
+          </div>
+          <div class="col-sm-3 col-xs-3">
+            <input type="text" class="form-control input-sm" id="prix" placeholder="Prix">
+          </div>
+          <div class="col-sm-1 col-xs-1">
+            <button type="submit" class="btn btn-default btn-sm btn-block" style="width: fit-content;">Ajouter</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <footer>
+    <%- include('./partials/footer') %>
+  </footer>
+  <%- include('./partials/script') %>
+</body>
+
+</html>

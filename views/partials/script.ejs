@@ -1,0 +1,43 @@
+<!-- views/partials/script.ejs -->
+
+<script src="/socket.io/socket.io.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script>
+    var socket = io.connect('http://172.17.15.180:3000');
+
+    $('form').submit(function (e) {
+        let data = $('#' + $(this).attr('id')).find('input').toArray().reduce((acc, item) => {
+            acc[item.id] = item.value;
+            return acc;
+        }, {});
+
+        socket.emit('message', {
+            id: $(this).attr('id'),
+            data: data
+        });
+        console.table(data);
+
+    });
+    socket.on('refresh', function (data) {
+
+        var str = '';
+        data.itemList.tab.forEach(function (item) {
+            str += '<tr>' +
+                '<td>' +
+                item.id +
+                '</td>' +
+                '<td>' +
+                item.dateCreation +
+                '</td>' +
+                '<td>' +
+                item.nom +
+                '</td>' +
+                '<td>' +
+                item.prix +
+                '</td>' +
+                '</tr>';
+        });
+
+        $('table tbody').html(str);
+    });
+</script>
